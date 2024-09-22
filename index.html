@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="invoice-box" id="invoice-box">
+      <div class="header">
+        <img src="gambar/LOGO4.png" alt="Logo Perusahaan" />
+        <div class="field">
+          <label for="invoice-no">INVOICE NO:</label>
+          <span id="invoice-no"></span>
+        </div>
+        <div class="field">
+          <label for="tanggal">TANGGAL:</label>
+          <span id="tanggal"></span>
+        </div>
+        <div class="field">
+          <label for="nama">NAMA:</label>
+          <input
+            type="text"
+            id="nama"
+            class="no-border"
+            placeholder="Masukkan Nama"
+          />
+        </div>
+        <div class="field">
+          <label for="telepon">NO. HP/TELP:</label>
+          <input
+            type="text"
+            id="telepon"
+            class="no-border"
+            placeholder="Masukkan No. HP/Telp"
+          />
+        </div>
+      </div>
+
+      <table id="invoice-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>DETAIL BARANG</th>
+            <th>QTY</th>
+            <th>HARGA</th>
+            <th>JUMLAH</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <input
+                type="text"
+                class="detail-barang"
+                placeholder="Detail Barang"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                class="qty"
+                placeholder="Qty"
+                oninput="calculateAmount(this)"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                class="harga"
+                placeholder="Harga"
+                oninput="formatHarga(this); calculateAmount(this)"
+              />
+            </td>
+            <td><span class="jumlah"></span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="add-row-btn" onclick="addRow()">Tambah Barang</button>
+
+      <div class="footer">
+        <div>
+          <p>TANDA TERIMA:</p>
+          <p>___________________________________</p>
+        </div>
+        <div>
+          <p>HORMAT KAMI:</p>
+          <p>___________________________________</p>
+        </div>
+        <div>
+          <p>Jumlah: <span id="total-jumlah"></span></p>
+          <p>
+            DP:
+            <input
+              type="number"
+              id="dp"
+              placeholder="DP"
+              oninput="calculateTotal()"
+            />
+          </p>
+          <p>Sisa: <span id="sisa"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="generatePDF()">Download PDF</button>
+
+    <!-- Menyertakan library html2pdf untuk fungsi export PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <!-- Script khusus untuk fungsi Invoice -->
+    <script src="script.js"></script>
+  </body>
+</html>
